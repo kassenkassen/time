@@ -8,9 +8,15 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from '../in-memory-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthorComponent } from './author/author.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [BooksComponent, EditBookComponent, DetailsBookComponent, AuthorComponent],
+  declarations: [
+    BooksComponent,
+    EditBookComponent,
+    DetailsBookComponent,
+    AuthorComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -23,6 +29,7 @@ import { AuthorComponent } from './author/author.component';
       dataEncapsulation: false,
       passThruUnknownUrl: true,
     }),
+    FormsModule,
   ],
   exports: [BooksComponent],
 })
