@@ -1,0 +1,5 @@
+<form #genreForm="ngForm" (ngSubmit)="saveGenre()" *ngIf="genre">
+  <label for="name" name="name">Name</label>
+  <input name="name" id="name" required [(ngModel)]="genre.name" />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>

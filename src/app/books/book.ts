@@ -3,5 +3,6 @@ export interface Book {
   title: string;
   author: string;
   pages: number;
+  genreId: number;
   cover?: string;
 }

@@ -50,6 +50,7 @@ export class BooksService {
       title: '',
       author: '',
       pages: 0,
+      genreId: 1,
     };
   }
 }

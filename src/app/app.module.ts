@@ -8,6 +8,8 @@ import { MenuComponent } from './menu/menu.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { GenreComponent } from './genres/genre.component';
+import { EditGenreComponent } from './genres/edit-genre/edit-genre.component';
+import { DetailsGenreComponent } from './genres/details-genre/details-genre.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { GenreComponent } from './genres/genre.component';
     WelcomeComponent,
     PageNotFoundComponent,
     GenreComponent,
+    EditGenreComponent,
+    DetailsGenreComponent,
   ],
   imports: [BrowserModule, BooksModule, AppRoutingModule],
   providers: [],

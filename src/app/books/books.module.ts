@@ -31,6 +31,6 @@ import { FormsModule } from '@angular/forms';
     }),
     FormsModule,
   ],
-  exports: [BooksComponent],
+  exports: [BooksComponent, FormsModule],
 })
 export class BooksModule {}

@@ -49,6 +49,7 @@ export class InMemoryDataService implements InMemoryDbService {
         title: generateName(),
         author: generateHumanName(),
         pages: Math.floor(Math.random() * (pagesMax - pagesMin + 1)) + pagesMin,
+        genreId: [1, 2, 3, 4, 5][Math.floor(Math.random() * 5)],
       });
     }
 
