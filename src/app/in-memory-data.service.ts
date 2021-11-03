@@ -6,17 +6,43 @@ import { Book } from './books/book';
 import { generateHumanName } from './helpers/random-names-generator';
 import { generateName } from './helpers/random-title-generator';
 import { Observable } from 'rxjs';
+import { Genre } from './genres/genre';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
+    const genres: Genre[] = [];
     const books: Book[] = [];
     // const users: User[] = [];
     const booksCount = 10;
     const pagesMin = 50;
     const pagesMax = 1000;
+
+    genres.push(
+      {
+        id: 1,
+        name: 'horror',
+      },
+      {
+        id: 2,
+        name: 'thriller',
+      },
+      {
+        id: 3,
+        name: 'fantasy',
+      },
+      {
+        id: 4,
+        name: 'science-fiction',
+      },
+      {
+        id: 5,
+        name: 'comedy',
+      }
+    );
+
     for (let i = 0; i < booksCount; i++) {
       books.push({
         id: i + 1,
@@ -52,7 +78,7 @@ export class InMemoryDataService implements InMemoryDbService {
     //     books: [books[21], books[41], books[16]],
     //   }
     // );
-    return { books };
+    return { books, genres };
   }
 
   // Overrides the genId method to ensure that a hero always has an id.
