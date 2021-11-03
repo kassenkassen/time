@@ -9,7 +9,7 @@ import { InMemoryDataService } from '../in-memory-data.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [BooksComponent, EditBookComponent],
+  declarations: [BooksComponent, EditBookComponent, DetailsBookComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
