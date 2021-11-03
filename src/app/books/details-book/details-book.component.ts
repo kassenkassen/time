@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Book } from '../book';
 import { BooksService } from '../books.service';
 
@@ -9,9 +10,10 @@ import { BooksService } from '../books.service';
   templateUrl: './details-book.component.html',
   styleUrls: ['./details-book.component.scss'],
 })
-export class DetailsBookComponent implements OnInit {
+export class DetailsBookComponent implements OnInit, OnDestroy {
   book!: Book;
   backgroundColor = '';
+  sub: Subscription = new Subscription();
 
   constructor(
     private booksService: BooksService,
@@ -24,8 +26,14 @@ export class DetailsBookComponent implements OnInit {
     this.getBook(id);
   }
 
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   getBook(id: number) {
-    this.booksService.getBook(id).subscribe((book) => (this.book = book));
+    this.sub = this.booksService
+      .getBook(id)
+      .subscribe((book) => (this.book = book));
   }
 
   back() {

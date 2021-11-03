@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Genre } from './genre';
 import { GenreService } from './genre.service';
 
@@ -7,8 +8,9 @@ import { GenreService } from './genre.service';
   templateUrl: './genre.component.html',
   styleUrls: ['./genre.component.scss'],
 })
-export class GenreComponent implements OnInit {
+export class GenreComponent implements OnInit, OnDestroy {
   genres: Genre[] = [];
+  sub: Subscription = new Subscription();
 
   constructor(private genreService: GenreService) {}
 
@@ -16,7 +18,13 @@ export class GenreComponent implements OnInit {
     this.getGenres();
   }
 
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   getGenres() {
-    this.genreService.getGenres().subscribe((genres) => (this.genres = genres));
+    this.sub = this.genreService
+      .getGenres()
+      .subscribe((genres) => (this.genres = genres));
   }
 }

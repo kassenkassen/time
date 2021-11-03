@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Book } from '../book';
 import { BooksService } from '../books.service';
 
@@ -8,8 +9,9 @@ import { BooksService } from '../books.service';
   templateUrl: './edit-book.component.html',
   styleUrls: ['./edit-book.component.scss'],
 })
-export class EditBookComponent implements OnInit {
+export class EditBookComponent implements OnInit, OnDestroy {
   book!: Book;
+  sub: Subscription = new Subscription();
 
   pageTitle = '';
 
@@ -20,16 +22,24 @@ export class EditBookComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      const id = Number(this.route.snapshot.paramMap.get('id'));
-      this.getBook(id);
-    });
+    this.sub.add(
+      this.route.paramMap.subscribe((params) => {
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        this.getBook(id);
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   getBook(id: number) {
-    this.bookService
-      .getBook(id)
-      .subscribe((book) => this.onBookRetrieved(book));
+    this.sub.add(
+      this.bookService
+        .getBook(id)
+        .subscribe((book) => this.onBookRetrieved(book))
+    );
   }
 
   onBookRetrieved(book: Book) {
@@ -43,8 +53,10 @@ export class EditBookComponent implements OnInit {
   }
 
   saveBook() {
-    this.bookService
-      .saveBook(this.book)
-      .subscribe(() => this.router.navigate(['books']));
+    this.sub.add(
+      this.bookService
+        .saveBook(this.book)
+        .subscribe(() => this.router.navigate(['books']))
+    );
   }
 }
