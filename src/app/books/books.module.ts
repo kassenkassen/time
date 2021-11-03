@@ -7,9 +7,10 @@ import { DetailsBookComponent } from './details-book/details-book.component';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from '../in-memory-data.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthorComponent } from './author/author.component';
 
 @NgModule({
-  declarations: [BooksComponent, EditBookComponent, DetailsBookComponent],
+  declarations: [BooksComponent, EditBookComponent, DetailsBookComponent, AuthorComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([

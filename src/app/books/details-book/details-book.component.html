@@ -1,6 +1,9 @@
 <div *ngIf="book" class="card">
-  <p>{{ book.title }}</p>
-  <p>{{ book.author }}</p>
+  <p [style.backgroundColor]="backgroundColor">{{ book.title }}</p>
+  <app-author
+    author="{{ book.author }}"
+    (backgroundChange)="onBackgroundChange($event)"
+  ></app-author>
   <p>{{ book.pages }}</p>
 </div>
 <button type="button" (click)="back()" class="btn btn-primary">Back</button>

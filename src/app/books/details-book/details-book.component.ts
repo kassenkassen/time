@@ -11,6 +11,7 @@ import { BooksService } from '../books.service';
 })
 export class DetailsBookComponent implements OnInit {
   book!: Book;
+  backgroundColor = '';
 
   constructor(
     private booksService: BooksService,
@@ -29,5 +30,9 @@ export class DetailsBookComponent implements OnInit {
 
   back() {
     this.location.back();
+  }
+
+  onBackgroundChange(value: string) {
+    this.backgroundColor = value;
   }
 }
